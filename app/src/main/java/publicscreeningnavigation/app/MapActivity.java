@@ -19,6 +19,10 @@ public class MapActivity extends FragmentActivity  {
 
     static final LatLng HAMBURG = new LatLng(53.558, 9.927);
     static final LatLng KIEL = new LatLng(53.551, 9.993);
+    static final LatLng WEIMAR = new LatLng(50.9794934, 11.323543900000004);
+    static final LatLng WEIMAR_HALL = new LatLng(50.9837403, 11.325099000000023);
+    static final LatLng WEIMAR_RESERVEBANK = new LatLng(50.97411899999999, 11.32747919999997);
+
     private GoogleMap map;
 
     @Override
@@ -28,20 +32,34 @@ public class MapActivity extends FragmentActivity  {
 
         map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
-        Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-                .title("Hamburg"));
-        Marker kiel = map.addMarker(new MarkerOptions()
+        /*Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
+                .title("Hamburg"));*/
+        /*Marker kiel = map.addMarker(new MarkerOptions()
                 .position(KIEL)
                 .title("Kiel")
                 .snippet("Kiel is cool")
                 .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.ic_launcher)));*/
+        Marker weimar = map.addMarker(new MarkerOptions().position(WEIMAR)
+                .title("Weimar"));
+        Marker weimar_hall = map.addMarker(new MarkerOptions()
+                .position(WEIMAR_HALL)
+                .title("Weimar Hall")
+                .snippet("indoor, no smoking")
+                .icon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.ic_launcher)));
+        Marker weimar_reservebank = map.addMarker(new MarkerOptions()
+                .position(WEIMAR_RESERVEBANK)
+                .title("Reservebank")
+                .snippet("indoor, sports bar")
+                .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.ic_launcher)));
 
         // Move the camera instantly to hamburg with a zoom of 15.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(WEIMAR, 15));
 
         // Zoom in, animating the camera.
-        map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
     }
 
 
