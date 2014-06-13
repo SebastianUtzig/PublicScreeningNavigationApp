@@ -1,5 +1,7 @@
 package publicscreeningnavigation.app;
 
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -46,8 +48,25 @@ public class screeningLocation {
         }
     }
 
+    public boolean isTaggedWith(String tagToFind){
+        for (String tag : tags){
+            if (tag.toLowerCase().equals(tagToFind.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean nameIsLike(String nameToCompare){
+        String LCN = name.toLowerCase();
+        String LCCN = nameToCompare.toLowerCase();
+
+        return LCN.contains(LCCN);
+    }
+
     public void setDescription(String description){
         this.description = description;
     }
+    public String getName() { return name; }
 
 }

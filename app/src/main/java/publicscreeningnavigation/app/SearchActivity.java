@@ -1,5 +1,6 @@
 package publicscreeningnavigation.app;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class SearchActivity extends ActionBarActivity {
 
@@ -72,9 +79,31 @@ public class SearchActivity extends ActionBarActivity {
     }
 
     public void initSearch(View view){
-        CharSequence searchString = searchView.getText();
-        if (searchString.length() < 0){
-            //do search
+        CharSequence searchSequence = searchView.getText();
+        String searchString = searchSequence.toString();
+        boolean forTag = false;
+        boolean forLocation = false;
+        boolean forName = false;
+
+        if (searchString.length() > 0){
+
+            if (locationRadio.isChecked()){
+               forLocation = true;
+            }
+            else if (tagRadio.isChecked()){
+                forTag = true;
+            }
+            else {
+                forName = true;
+            }
+
+            Intent i = new Intent(getApplicationContext(), resultActivity.class);
+            i.putExtra("searchWord",searchString);
+            i.putExtra("forTag",forTag);
+            i.putExtra("forName",forName);
+            i.putExtra("forLocation",forName);
+            startActivityForResult(i, 0);
+
         }
         else {
             //toast: no search string!
