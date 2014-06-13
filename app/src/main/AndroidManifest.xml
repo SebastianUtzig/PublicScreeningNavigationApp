@@ -24,6 +24,10 @@
             android:name="publicscreeningnavigation.app.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
+        <activity
+            android:name="publicscreeningnavigation.app.SearchActivity"
+            android:label="@string/title_activity_seach" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -32,10 +36,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC0gv7NbWBs9WFxhgiKJALoAWew07qQ5SA" />
 
-        <activity
-            android:name="publicscreeningnavigation.app.SeachActivity"
-            android:label="@string/title_activity_seach" >
-        </activity>
+
     </application>
 
 </manifest>

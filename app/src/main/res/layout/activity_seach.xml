@@ -8,60 +8,55 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="publicscreeningnavigation.app.SeachActivity">
 
-    <TextView
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search by location"
-        android:id="@+id/textView"
+        android:id="@+id/locationRadio"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="40dp" />
+        android:checked="false"
+        android:onClick="locationRadioHit" />
 
-    <TextView
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search by tags"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="120dp" />
+        android:text="Search by tag"
+        android:id="@+id/tagRadio"
+        android:layout_below="@+id/locationRadio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:onClick="tagRadioHit" />
 
-    <TextView
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search by name"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_marginTop="125dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/locationSearchTextField"
-        android:hint="Enter something here"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:text="Seach by name"
+        android:id="@+id/nameRadio"
+        android:layout_below="@+id/tagRadio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:onClick="nameRadioHit" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_below="@+id/textView2"
-        android:hint="Enter tags, seperated by comma"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:layout_marginTop="38dp"
+        android:hint="Enter search criteria here"
+        android:layout_below="@+id/nameRadio"
+        android:layout_centerHorizontal="true" />
 
-    <EditText
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/locationSearchTextField"
-        android:layout_alignStart="@+id/locationSearchTextField"
-        android:hint="Enter location name" />
+        android:text="Go!"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="initSearch" />
+
 </RelativeLayout>
