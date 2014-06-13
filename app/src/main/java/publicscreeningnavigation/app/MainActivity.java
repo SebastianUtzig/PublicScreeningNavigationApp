@@ -40,4 +40,9 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext(), MapActivity.class);
         startActivityForResult(i, 0);
     }
+
+    public void openSearchView(View view){
+        Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+        startActivityForResult(i, 0);
+    }
 }
