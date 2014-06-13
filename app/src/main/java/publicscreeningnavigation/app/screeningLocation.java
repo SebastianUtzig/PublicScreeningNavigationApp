@@ -4,6 +4,7 @@ import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -68,5 +69,7 @@ public class screeningLocation {
         this.description = description;
     }
     public String getName() { return name; }
-
+    public LatLng getPosition() { return position; }
+    public ArrayList<String> getTags() { return tags; }
+    public String getDescription() { return description; }
 }

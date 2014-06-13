@@ -55,6 +55,24 @@ public class MapActivity extends FragmentActivity  {
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.ic_launcher)));
 
+        for (screeningLocation l : locationStore.sharedLocations()) {
+            String tagString = "";
+            for (String tag : l.getTags()){
+                tagString+= tag+", ";
+            }
+           tagString = tagString.substring(0,tagString.length()-2);
+
+
+
+            Marker m = map.addMarker(new MarkerOptions()
+                 .position(l.getPosition())
+                 .title(l.getName())
+                 .snippet(tagString)
+                 .icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.ic_launcher)));
+
+        }
+
         // Move the camera instantly to hamburg with a zoom of 15.
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(WEIMAR, 15));
 
