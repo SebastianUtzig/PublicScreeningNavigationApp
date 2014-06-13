@@ -3,6 +3,7 @@ package publicscreeningnavigation.app;
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -47,6 +48,7 @@ public class resultActivity extends ActionBarActivity {
         }
 
         ArrayList<String> names = getNamesFromResults();
+        Log.d("Size of the names", String.valueOf(names.size()));
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, names);
         listview.setAdapter(adapter);
     }
@@ -58,11 +60,15 @@ public class resultActivity extends ActionBarActivity {
     private void filterForLocation() {
         Toast.makeText(getApplicationContext(),
                 "Filtering for location is not yet implemented. Displaying all locations.", Toast.LENGTH_LONG).show();
-        filteredResults = locationStore.sharedLocations();
+        copyLocations();
     }
 
     private void filterForTag() {
         filteredResults = filter.getInstance().filterLocationsForTag(searchWord);
+    }
+
+    private void copyLocations() {
+      filteredResults = filter.getInstance().filterLocationsForNoPattern();
     }
 
     private ArrayList<String> getNamesFromResults() {

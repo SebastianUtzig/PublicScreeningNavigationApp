@@ -37,4 +37,13 @@ public class filter {
         }
         return filtered;
     }
+
+    public ArrayList<screeningLocation> filterLocationsForNoPattern() {
+        ArrayList<screeningLocation> filtered = new ArrayList<screeningLocation>();
+        for (screeningLocation location : locationStore.sharedLocations()) {
+            filtered.add(location);
+        }
+        return filtered;
+    }
+
 }

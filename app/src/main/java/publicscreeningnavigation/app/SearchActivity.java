@@ -101,7 +101,7 @@ public class SearchActivity extends ActionBarActivity {
             i.putExtra("searchWord",searchString);
             i.putExtra("forTag",forTag);
             i.putExtra("forName",forName);
-            i.putExtra("forLocation",forName);
+            i.putExtra("forLocation",forLocation);
             startActivityForResult(i, 0);
 
         }
