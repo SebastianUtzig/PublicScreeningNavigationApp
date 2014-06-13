@@ -34,6 +34,7 @@ public class SearchActivity extends ActionBarActivity {
         tagRadio = (RadioButton)findViewById(R.id.tagRadio);
         locationRadio = (RadioButton)findViewById(R.id.locationRadio);
         searchView = (TextView)findViewById(R.id.editText);
+        locationRadio.setChecked(true);
     }
 
 

@@ -40,6 +40,14 @@
             android:name="publicscreeningnavigation.app.resultActivity"
             android:label="@string/title_activity_result" >
         </activity>
+        <activity
+            android:name="publicscreeningnavigation.app.locationActivity"
+            android:label="@string/title_activity_loation" >
+        </activity>
+        <activity
+            android:name="publicscreeningnavigation.app.uploadActivity"
+            android:label="@string/title_activity_upload" >
+        </activity>
     </application>
 
 </manifest>

@@ -38,6 +38,15 @@ public class filter {
         return filtered;
     }
 
+    public screeningLocation filterForId(int ident) {
+        for (screeningLocation l : locationStore.sharedLocations()){
+            if (ident == l.getID()){
+                return l;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<screeningLocation> filterLocationsForNoPattern() {
         ArrayList<screeningLocation> filtered = new ArrayList<screeningLocation>();
         for (screeningLocation location : locationStore.sharedLocations()) {

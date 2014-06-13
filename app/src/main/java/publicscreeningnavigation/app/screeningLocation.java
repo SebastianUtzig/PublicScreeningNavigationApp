@@ -65,6 +65,7 @@ public class screeningLocation {
         return LCN.contains(LCCN);
     }
 
+
     public void setDescription(String description){
         this.description = description;
     }
@@ -72,4 +73,13 @@ public class screeningLocation {
     public LatLng getPosition() { return position; }
     public ArrayList<String> getTags() { return tags; }
     public String getDescription() { return description; }
+    public int getID() { return  identifier; }
+    public String tagsToStr(){
+        String result = "";
+        for(String tag : tags){
+            result+= tag + ", ";
+        }
+        result = result.substring(0,result.length()-2);
+        return result;
+    }
 }

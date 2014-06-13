@@ -1,17 +1,18 @@
 package publicscreeningnavigation.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,21 @@ public class resultActivity extends ActionBarActivity {
         Log.d("Size of the names", String.valueOf(names.size()));
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, names);
         listview.setAdapter(adapter);
+
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                screeningLocation clicked = filteredResults.get(position);
+
+                Intent i = new Intent(getApplicationContext(), locationActivity.class);
+                i.putExtra("clickedId",clicked.getID());
+                startActivityForResult(i, 0);
+            }
+
+        });
     }
 
     private void filterForNames() {
