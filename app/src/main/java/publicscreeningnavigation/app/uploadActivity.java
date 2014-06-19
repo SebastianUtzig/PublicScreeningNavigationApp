@@ -1,12 +1,16 @@
 package publicscreeningnavigation.app;
 
-import android.support.v7.app.ActionBarActivity;
+
+
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-
-public class uploadActivity extends ActionBarActivity {
+public class uploadActivity extends FragmentActivity implements addTagDialogFragment.addTagDialogListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,4 +37,22 @@ public class uploadActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void addNewTag(View view){
+        DialogFragment newFragment = new addTagDialogFragment();
+        String tag = "tagtagtag";
+        newFragment.show(getSupportFragmentManager(),tag);
+    }
+
+    public void onDialogPositiveClick(DialogFragment dialog){
+
+    }
+
+    public void onDialogNegativeClick(DialogFragment dialog){
+
+    }
+
+
+
+
 }
