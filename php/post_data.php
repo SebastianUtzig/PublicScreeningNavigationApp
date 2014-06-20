@@ -9,6 +9,15 @@
 
 	$insert = mysql_query("INSERT INTO locations (lat, lon, name) VALUES ('$lat', '$lon','$name')");
 
+	/*$tags = explode(" ", $_POST['tags']);
+
+	foreach ($tags as $tag) {
+		$insert = mysql_query("INSERT INTO tags (name, location_id) VALUES ('$lat', '$lon','$name')");
+	}*/
+
+	
+
+
 
 
 ?>

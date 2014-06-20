@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -14,6 +17,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        new GetData("locations").execute();
     }
 
 
@@ -42,12 +47,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openSearchView(View view){
+
         Intent i = new Intent(getApplicationContext(), SearchActivity.class);
         startActivityForResult(i, 0);
     }
 
     public void openUploadView(View view) {
-        new PostData(44.222,33.222,"Buxdehude").execute();
+        ArrayList<String> tags = new ArrayList<String>(Arrays.asList("smoking", "free", "nice"));
+        new PostData(50.974296,11.327415,"Reservebank",tags).execute();
 
         Intent i = new Intent(getApplicationContext(), uploadActivity.class);
         startActivityForResult(i,0);

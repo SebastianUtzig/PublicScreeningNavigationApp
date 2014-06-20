@@ -27,8 +27,16 @@ public class locationStore {
         return locations;
     }
 
+    public static void addLocation(screeningLocation location){
+        if (instance == null){
+            instance = new locationStore();
+        }
+        locations.add(location);
+    }
+
     private locationStore() {
-        locations = createScreeningSet();
+        //locations = createScreeningSet();
+        locations = new ArrayList<screeningLocation>();
     }
 
     private static ArrayList<screeningLocation> createScreeningSet() {

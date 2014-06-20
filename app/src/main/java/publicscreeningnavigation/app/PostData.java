@@ -21,11 +21,13 @@ public class PostData extends AsyncTask<Void, Void, Void> {
     private double lat;
     private double lon;
     private String name;
+    private ArrayList<String> tags;
 
-    public PostData(double lat, double lon, String name){
+    public PostData(double lat, double lon, String name,ArrayList<String> tags){
         this.lat = lat;
         this.lon = lon;
         this.name = name;
+        this.tags = tags;
     }
 
 
@@ -43,7 +45,7 @@ public class PostData extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Long result) {
         //showDialog("Downloaded " + result + " bytes");
     }
-    public void postData(double la, double lo, String name) {
+    private void postData(double la, double lo, String name) {
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
@@ -63,6 +65,15 @@ public class PostData extends AsyncTask<Void, Void, Void> {
             nameValuePairs.add(new BasicNameValuePair("lat", String.valueOf(la)));
             nameValuePairs.add(new BasicNameValuePair("lon", String.valueOf(lo)));
             nameValuePairs.add(new BasicNameValuePair("name", String.valueOf(name)));
+
+            //tags:
+            String tags = "";
+            for(String tag : this.tags){
+                tags+=tag+" ";
+            }
+            tags = tags.substring(0,tags.length()-1);
+            nameValuePairs.add(new BasicNameValuePair("tags",tags));
+
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 
