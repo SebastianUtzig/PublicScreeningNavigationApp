@@ -8,7 +8,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5DA11E"
+    android:background="#133965"
+    android:textColor="#ffffff"
     tools:context="publicscreeningnavigation.app.locationActivity">
 
     <fragment
@@ -31,7 +32,8 @@
         android:padding="5dp"
         android:layout_below="@+id/map"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +44,8 @@
         android:layout_below="@+id/tagsHead"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +57,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:padding="5dp"
         android:layout_below="@+id/tagsContent"
-        android:layout_alignLeft="@+id/tagsContent" />
+        android:layout_alignLeft="@+id/tagsContent"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -65,7 +69,8 @@
         android:padding="10dp"
         android:layout_below="@+id/descrHead"
         android:layout_alignLeft="@+id/tagsContent"
-        android:layout_alignStart="@+id/tagsContent" />
+        android:layout_alignStart="@+id/tagsContent"
+        android:textColor="#ffffff"/>
 
     <ImageView
         android:layout_width="match_parent"

@@ -6,7 +6,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="publicscreeningnavigation.app.MainActivity">
+    tools:context="publicscreeningnavigation.app.MainActivity"
+    android:background="@drawable/background"
+    android:textColor="#ffffff">
 
     <Button
         android:layout_width="400px"
@@ -15,7 +17,8 @@
         android:id="@+id/map_button"
         android:layout_above="@+id/find_button"
         android:layout_centerHorizontal="true"
-        android:onClick="openMapView"/>
+        android:onClick="openMapView"
+        android:textColor="#ffffff"/>
 
     <Button
         android:layout_width="400px"
@@ -24,7 +27,8 @@
         android:id="@+id/find_button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="openSearchView"/>
+        android:onClick="openSearchView"
+        android:textColor="#ffffff"/>
 
     <Button
         android:layout_width="400px"
@@ -33,6 +37,7 @@
         android:id="@+id/create_button"
         android:layout_below="@+id/find_button"
         android:layout_centerHorizontal="true"
-        android:onClick="openUploadView"/>
+        android:onClick="openUploadView"
+        android:textColor="#ffffff"/>
 
 </RelativeLayout>
