@@ -10,8 +10,23 @@
 
 		    $query = "SELECT * FROM locations";
 		    $resultset = mysql_query($query);
-		    while($row = mysql_fetch_array($resultset))
-		    	echo $row['id']."%".$row['lat']."%".$row['lon']."%".$row['name']."%".$row['description'].";";
+		    while($row = mysql_fetch_array($resultset)){
+
+		    	$location_id = $row['id'];
+
+		    	echo $location_id."%".$row['lat']."%".$row['lon']."%".$row['name']."%".$row['description'];
+
+		    	$query2 = "SELECT * FROM tags WHERE location_id = '$location_id'";
+
+		    	//echo $location_id.".........................";
+		    	//echo "rows: ".mysql_num_rows($query2);
+
+		    	$resultset2 = mysql_query($query2);
+		    	while($row2 = mysql_fetch_array($resultset2)){
+		    		echo "%".$row2['name'];
+		    	}
+		    	echo ";";
+		    }
 
 		endif;
 	else:

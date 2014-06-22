@@ -36,7 +36,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-        getData(this.table_name);
+        getData();
 
         return null;
     }
@@ -48,45 +48,13 @@ public class GetData extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Long result) {
         //showDialog("Downloaded " + result + " bytes");
     }
-    private void getData(String table_name) {
-
-        /*List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-        nameValuePairs.add(new BasicNameValuePair("name", this.table_name));
-        String paramString = URLEncodedUtils.format(nameValuePairs, "utf-8");
-
-
-        HttpGet httpget = new HttpGet("http://192.168.1.59/MIS/project/get_data.php/"+paramString);
-        System.out.println("http://192.168.1.59/MIS/project/get_data.php?"+paramString);
-        try {
-
-
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response = httpclient.execute(httpget);
-            if(response != null) {
-                String line = "";
-                InputStream inputstream = response.getEntity().getContent();
-                line = convertStreamToString(inputstream);
-
-                System.out.println(line);
-                //Toast.makeText(this, line, Toast.LENGTH_SHORT).show();
-            } else {
-                //Toast.makeText(this, "Unable to complete your request", Toast.LENGTH_LONG).show();
-            }
-        } catch (ClientProtocolException e) {
-            //Toast.makeText(this, "Caught ClientProtocolException", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            //Toast.makeText(this, "Caught IOException", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            //Toast.makeText(this, "Caught Exception", Toast.LENGTH_SHORT).show();
-        }*/
-
+    private void getData() {
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
-
+        //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
+        HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/get_data.php");
         try {
 
             // Add your data
@@ -101,6 +69,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                 String line = "";
                 InputStream inputstream = response.getEntity().getContent();
                 line = convertStreamToString(inputstream);
+
 
                 if(line.length()>0) {
 
@@ -122,53 +91,20 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                         String description = location[4];
                         screeningLocation new_location = new screeningLocation(name, id, new LatLng(lat, lon));
                         new_location.setDescription(description);
-                        locationStore.addLocation(new_location);
 
 
-                        ///////tag post
-                        /*HttpPost httppost2 = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
-
-                        try {
-
-                            // Add your data
-                            List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(2);
-                            nameValuePairs2.add(new BasicNameValuePair("name","tags"));
-                            httppost2.setEntity(new UrlEncodedFormEntity(nameValuePairs2));
-
-                            // Execute HTTP Post Request
-                            HttpResponse response2 = httpclient.execute(httppost2);
-                            if(response2 != null) {
-                                String line = "";
-                                InputStream inputstream2 = response2.getEntity().getContent();
-                                line = convertStreamToString(inputstream2);
-
-                                if(line.length()>0) {}
-
-
-                            } else {
-                                //Toast.makeText(this, "Unable to complete your request", Toast.LENGTH_LONG).show();
+                        ///////tags
+                        if(location.length>5){
+                            for(int tag_index = 5;tag_index<location.length;++tag_index){
+                                new_location.addTag(location[tag_index]);
                             }
-                        } catch (ClientProtocolException e) {
-                            //Toast.makeText(this, "Error", 5000).show();
-
-                        }
-                        catch (IOException e) {
-                            //Toast.makeText(this, "Error", 5000).show();
                         }
 
-
-
-                        */
-                        ////////////////////////////////
+                        locationStore.addLocation(new_location);
 
 
                     }
                 }
-
-
-
-
-
 
 
             } else {

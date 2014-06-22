@@ -6,18 +6,20 @@
 	$lat =doubleval($_POST['lat']);
 	$lon =doubleval($_POST['lon']);
 	$name = $_POST['name'];
+	$description = $_POST['description'];
 
-	$insert = mysql_query("INSERT INTO locations (lat, lon, name) VALUES ('$lat', '$lon','$name')");
+	$insert = mysql_query("INSERT INTO locations (lat, lon, name, description) VALUES ('$lat', '$lon','$name','$description')");
 
-	/*$tags = explode(" ", $_POST['tags']);
+	$insert_id = mysql_insert_id();
+
+	$tags = explode(" ", $_POST['tags']);
 
 	foreach ($tags as $tag) {
-		$insert = mysql_query("INSERT INTO tags (name, location_id) VALUES ('$lat', '$lon','$name')");
-	}*/
+		$insert2 = mysql_query("INSERT INTO tags (name, location_id) VALUES ('$tag','$insert_id')");
+	}
 
-	
-
-
+	//app uses this id to store new location locally:
+	echo $insert_id;
 
 
 ?>
