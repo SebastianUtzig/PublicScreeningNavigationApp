@@ -24,10 +24,14 @@ import static android.os.Environment.getExternalStorageDirectory;
 public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
     private String image_title;
+    int location_id;
 
     InputStream inputStream;
 
-    public UploadImage(String image_title){this.image_title = image_title;}
+    public UploadImage(String image_title,int location_id){
+        this.image_title = image_title;
+        this.location_id = location_id;
+    }
 
     @Override
     protected String doInBackground(Bitmap... params) {
@@ -61,6 +65,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
         nameValuePairs.add(new BasicNameValuePair("image",image_str));
         nameValuePairs.add(new BasicNameValuePair("title",this.image_title));
+        nameValuePairs.add(new BasicNameValuePair("location_id",String.valueOf(this.location_id)));
 
         try{
             HttpClient httpclient = new DefaultHttpClient();
