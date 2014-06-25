@@ -7,7 +7,8 @@
     <string name="title_activity_map">Locations</string>
     <string name="title_activity_seach">SeachActivity</string>
     <string name="title_activity_result">resultActivity</string>
->>>>>>> origin/develop        <string name="title_activity_loation">loationActivity</string>
+>>>>>>> origin/develop            <string name="title_activity_loation">loationActivity</string>
     <string name="title_activity_upload">uploadActivity</string>
+    <string name="title_activity_photo">PhotoActivity</string>
 
 </resources>

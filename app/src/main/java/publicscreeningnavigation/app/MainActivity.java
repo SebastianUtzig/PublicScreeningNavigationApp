@@ -53,10 +53,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openUploadView(View view) {
-        ArrayList<String> tags = new ArrayList<String>(Arrays.asList("hammergeil", "free", "nice"));
-        new PostData(50.974296,11.327415,"Das Ding","Es ist sehr gut!",tags).execute();
+        //ArrayList<String> tags = new ArrayList<String>(Arrays.asList("hammergeil", "free", "nice"));
+        //new PostData(50.974296,11.327415,"Das Ding","Es ist sehr gut!",tags).execute();
 
-        Intent i = new Intent(getApplicationContext(), uploadActivity.class);
+        //Intent i = new Intent(getApplicationContext(), uploadActivity.class);
+        //startActivityForResult(i,0);
+
+        Intent i = new Intent(getApplicationContext(), PhotoActivity.class);
         startActivityForResult(i,0);
+
     }
 }
