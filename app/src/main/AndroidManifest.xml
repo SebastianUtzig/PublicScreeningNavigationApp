@@ -36,6 +36,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBwg6f3U5qRWIohdyr8wR0MNd0YPPJF8lk" />
 
+
         <activity
             android:name="publicscreeningnavigation.app.resultActivity"
             android:label="@string/title_activity_result" >

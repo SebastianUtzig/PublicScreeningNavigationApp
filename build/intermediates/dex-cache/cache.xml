@@ -2,20 +2,20 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-b7c6b4ccb243a1ed28ef6487226317c9c7c5e2ae.jar"
-        jar="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
-    <item
-        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-7b6c0173c0afbcdb9466cbf10810f27ccd204f0c.jar"
-        jar="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
+        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-556fd4e2e10a76d88acf63050ab6b2ca332a8eb4.jar"
+        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="3dfdf1db5ce5ea2999a5dcde8c8e650b02660059"/>
     <item
-        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-a1f4d2c9a4d57e57587e38f64202e4ac18edb328.jar"
-        jar="C:\Users\sebas_000\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-ae00ffd0a18b611663336289e84dcbc9d75b5364.jar"
+        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-24d0ea88760e7ea955242175e7429a53dd71f884.jar"
+        jar="E:\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
