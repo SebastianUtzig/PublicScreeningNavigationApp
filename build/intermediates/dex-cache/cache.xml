@@ -2,34 +2,22 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\internal_impl-19.1.0-e43df2d9eab258c302916fcf6d521893ac504adc.jar"
-        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\19.1.0\libs\internal_impl-19.1.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="e898b3d4e2733017f23894a563ea4f5b3aca72bc"/>
-    <item
-        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-645fdf23e5643b9d61839eb24f7fdbbb5a24031b.jar"
-        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\19.1.0\classes.jar"
+        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-1fa382166f4bd349d8fb5f65a972f659060c2e2e.jar"
+        jar="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\19.1.0\classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="c654eae911e6b937a56f14ba353baa95a82adb9c"/>
     <item
-        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-556fd4e2e10a76d88acf63050ab6b2ca332a8eb4.jar"
-        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.google.android.gms\play-services\4.4.52\classes.jar"
+        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\internal_impl-19.1.0-1e23cbffe27f9333e3c56b5e0133f2b3ce9c9463.jar"
+        jar="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\19.1.0\libs\internal_impl-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="3dfdf1db5ce5ea2999a5dcde8c8e650b02660059"/>
+        sha1="e898b3d4e2733017f23894a563ea4f5b3aca72bc"/>
     <item
-        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-358edec0dacf32d5a9162ee05f7bf67ac8835aa4.jar"
-        jar="E:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        dex="C:\Users\sebas_000\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-e311e493b238b75da4095bd5ee7b69d76d73dc42.jar"
+        jar="C:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
-    <item
-        dex="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\app\build\intermediates\pre-dexed\debug\classes-ae00ffd0a18b611663336289e84dcbc9d75b5364.jar"
-        jar="C:\Users\Jo\Documents\GitHub\PublicScreeningNavigationApp\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
 
 </pre-dex-items>
