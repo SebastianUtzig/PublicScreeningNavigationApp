@@ -54,7 +54,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
         HttpClient httpclient = new DefaultHttpClient();
 
         //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
-        HttpPost httppost = new HttpPost("http://192.168.1.100/PublicScreeningNavigation/get_data.php");
+        HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/get_data.php");
         try {
 
             // Add your data

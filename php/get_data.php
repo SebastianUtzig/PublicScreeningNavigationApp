@@ -27,7 +27,16 @@
 		    	}
 		    	echo ";";
 		    }
+		endif;
+		if($table_name == "images"):
 
+			$location_id = $_POST['location_id'];
+
+			$query = "SELECT * FROM images WHERE location_id = '$location_id'";
+		    $resultset = mysql_query($query);
+		    while($row = mysql_fetch_array($resultset)){
+		    	echo $row['path'].";";
+		    }
 		endif;
 	else:
 	    echo "No valid Request Received";

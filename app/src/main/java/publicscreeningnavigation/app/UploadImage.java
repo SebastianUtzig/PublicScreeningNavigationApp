@@ -73,7 +73,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
         try{
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.1.100/PublicScreeningNavigation/recieve_image.php");
+            HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/recieve_image.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             String the_string_response = convertResponseToString(response);

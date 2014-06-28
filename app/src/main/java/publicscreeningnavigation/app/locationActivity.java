@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -74,6 +75,11 @@ public class locationActivity extends ActionBarActivity {
 
         // Zoom in, animating the camera.
         map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+
+
+        //load images here:
+        // getimages
+        new GetImages((ImageView) findViewById(R.id.imageView),hostedLocation.getID()).execute();
 
     }
 

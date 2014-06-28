@@ -5,10 +5,12 @@
     $binary=base64_decode($base);
     header('Content-Type: bitmap; charset=utf-8');
 
-    $filepath = '..\\img\\'.$title.'.jpg';
+    //$filepath = '..\\img\\'.$title.'.jpg';
+    $filepath = 'img\\'.$title.'.jpg';
     $file = fopen($filepath, 'wb');
 
-    $filepath2 = "../img/".$title.".jpg";
+    //$filepath2 = "../img/".$title.".jpg";
+    $filepath2 = "img/".$title.".jpg";
     echo "filepath: ".$filepath;
     echo "location id: ".$location_id;
     fwrite($file, $binary);

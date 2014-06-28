@@ -40,7 +40,7 @@ public class PhotoActivity extends Activity {
             {
                 Toast.makeText(getApplicationContext(), "taken", Toast.LENGTH_SHORT).show();
                 System.out.println(bitmap);
-                new UploadImage("new_photo",15).execute(bitmap);
+                new UploadImage("new_photo",23).execute(bitmap);
             }
             cameraObject.release();
         }
