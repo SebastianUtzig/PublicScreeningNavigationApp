@@ -1,5 +1,7 @@
 package publicscreeningnavigation.app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -21,15 +23,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostData extends AsyncTask<Void, Void, Void> {
+public class PostData extends AsyncTask<Void, Void, Integer> {
 
+    private Activity activity;
     private double lat;
     private double lon;
     private String name;
     private String description;
     private ArrayList<String> tags;
 
-    public PostData(double lat, double lon, String name,String description,ArrayList<String> tags){
+    public PostData(Activity activity,double lat, double lon, String name,String description,ArrayList<String> tags){
+        this.activity = activity;
         this.lat = lat;
         this.lon = lon;
         this.name = name;
@@ -39,20 +43,23 @@ public class PostData extends AsyncTask<Void, Void, Void> {
 
 
     @Override
-    protected Void doInBackground(Void... params) {
-        postData();
+    protected Integer doInBackground(Void... params) {
 
-        return null;
+        return postData();
     }
 
-    protected void onProgressUpdate(Integer... progress) {
+    protected void onProgressUpdate(Void... progress) {
         //setProgressPercent(progress[0]);
     }
 
-    protected void onPostExecute(Long result) {
+    protected void onPostExecute(Integer result) {
         //showDialog("Downloaded " + result + " bytes");
+        Intent i = new Intent(activity, PhotoActivity.class);
+        i.putExtra("location_id",result);
+        this.activity.startActivity(i);
+
     }
-    private void postData() {
+    private Integer postData() {
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
@@ -105,6 +112,8 @@ public class PostData extends AsyncTask<Void, Void, Void> {
             locationStore.addLocation(new_location);
 
 
+            return insert_index;
+
 
 
         } catch (ClientProtocolException e) {
@@ -114,6 +123,8 @@ public class PostData extends AsyncTask<Void, Void, Void> {
         catch (IOException e) {
             //Toast.makeText(this, "Error", 5000).show();
         }
+
+        return  -1;
     }
 
     private String convertStreamToString(InputStream is) {

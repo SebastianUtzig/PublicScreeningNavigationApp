@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 public class PhotoActivity extends Activity {
 
+    private int location_id = -1;
+
     private Camera cameraObject;
     private Preview showCamera;
     private ImageView pic;
@@ -40,7 +42,7 @@ public class PhotoActivity extends Activity {
             {
                 Toast.makeText(getApplicationContext(), "taken", Toast.LENGTH_SHORT).show();
                 System.out.println(bitmap);
-                new UploadImage("new_photo",23).execute(bitmap);
+                new UploadImage("photo_of_"+location_id,location_id).execute(bitmap);
             }
             cameraObject.release();
         }
@@ -50,6 +52,13 @@ public class PhotoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            this.location_id = extras.getInt("location_id");
+        }
+
+
         //pic = (ImageView)findViewById(R.id.imageView1);
         cameraObject = isCameraAvailiable();
         showCamera = new Preview(this, cameraObject);

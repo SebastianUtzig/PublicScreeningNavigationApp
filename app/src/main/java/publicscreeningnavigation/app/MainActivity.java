@@ -56,11 +56,11 @@ public class MainActivity extends ActionBarActivity {
         //ArrayList<String> tags = new ArrayList<String>(Arrays.asList("mega", "free", "nice"));
         //new PostData(50.974296,11.327415,"Die Lücke","Sie ist sehr gut!",tags).execute();
 
-        //Intent i = new Intent(getApplicationContext(), uploadActivity.class);
-        //startActivityForResult(i,0);
-
-        Intent i = new Intent(getApplicationContext(), PhotoActivity.class);
+        Intent i = new Intent(getApplicationContext(), uploadActivity.class);
         startActivityForResult(i,0);
+
+        //Intent i = new Intent(getApplicationContext(), PhotoActivity.class);
+        //startActivityForResult(i,0);
 
     }
 }
