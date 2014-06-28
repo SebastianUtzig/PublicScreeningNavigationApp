@@ -2,7 +2,9 @@ package publicscreeningnavigation.app;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Debug;
 import android.util.Base64;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -54,7 +56,9 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
         //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream); //compress to which format you want.//!!!!!!!!!!!
+        Log.d("What","thefuck");
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream); //compress to which format you want.//!!!!!!!!!!!
+        Log.d("What","fuckfuckfuck");
 
         byte[] bitmapdata = stream.toByteArray();
 
@@ -69,7 +73,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
         try{
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/recieve_image.php");
+            HttpPost httppost = new HttpPost("http://192.168.1.100/PublicScreeningNavigation/recieve_image.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             String the_string_response = convertResponseToString(response);

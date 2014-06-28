@@ -55,4 +55,14 @@ public class filter {
         return filtered;
     }
 
+    public int findHighestActiveId() {
+        int highestId = locationStore.sharedLocations().get(0).getID();
+        for (screeningLocation location : locationStore.sharedLocations()){
+            if (location.getID() > highestId){
+                highestId = location.getID();
+            }
+        }
+        return highestId;
+    }
+
 }
