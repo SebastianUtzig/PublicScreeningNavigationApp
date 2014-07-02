@@ -44,6 +44,8 @@ public class MapActivity extends FragmentActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        getActionBar().hide();
+
         Bundle extras = getIntent().getExtras();
         int centerId = -1;
         if (extras != null){

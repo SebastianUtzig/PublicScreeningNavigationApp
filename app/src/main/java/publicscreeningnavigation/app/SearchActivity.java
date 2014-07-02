@@ -30,6 +30,8 @@ public class SearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seach);
 
+        getActionBar().hide();
+
         nameRadio = (RadioButton)findViewById(R.id.nameRadio);
         tagRadio = (RadioButton)findViewById(R.id.tagRadio);
         //locationRadio = (RadioButton)findViewById(R.id.locationRadio);

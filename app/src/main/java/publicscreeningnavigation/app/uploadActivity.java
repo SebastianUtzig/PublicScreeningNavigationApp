@@ -27,6 +27,7 @@ public class uploadActivity extends FragmentActivity implements addTagDialogFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().hide();
         setContentView(R.layout.activity_upload);
         collectedTags = (TextView) findViewById(R.id.tagsText);
         collectedTags.setText(collectedTagsAsString);

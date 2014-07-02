@@ -24,26 +24,27 @@
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_height="175px"
+        android:gravity="bottom"
+        android:inputType="textMultiLine"
         android:hint="Description"
         android:ems="10"
         android:id="@+id/descriptionField"
         android:layout_below="@+id/nameField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:lines="5" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tags:"
         android:id="@+id/textView"
-        android:layout_below="@+id/descriptionField"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:layout_above="@+id/tagsText" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,21 +52,20 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/tagsText"
-        android:layout_below="@+id/textView"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/addTagButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ffffff"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add new tag"
         android:id="@+id/addTagButton"
-        android:layout_below="@+id/tagsText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:onClick="addNewTag"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"

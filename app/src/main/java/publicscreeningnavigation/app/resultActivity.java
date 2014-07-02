@@ -30,6 +30,8 @@ public class resultActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        getActionBar().hide();
+
         final ListView listview = (ListView) findViewById(R.id.list);
 
         Bundle extras = getIntent().getExtras();
