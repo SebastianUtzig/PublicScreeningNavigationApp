@@ -14,7 +14,7 @@
 
 		    	$location_id = $row['id'];
 
-		    	echo $location_id."%".$row['lat']."%".$row['lon']."%".$row['name']."%".$row['description'];
+		    	echo $location_id."%".$row['lat']."%".$row['lon']."%".$row['name']."%".utf8_encode($row['description']);
 
 		    	$query2 = "SELECT * FROM tags WHERE location_id = '$location_id'";
 

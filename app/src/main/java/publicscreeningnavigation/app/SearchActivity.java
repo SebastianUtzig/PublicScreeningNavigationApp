@@ -20,7 +20,7 @@ public class SearchActivity extends ActionBarActivity {
 
     private RadioButton nameRadio;
     private RadioButton tagRadio;
-    private RadioButton locationRadio;
+    //private RadioButton locationRadio;
     private TextView searchView;
 
     @Override
@@ -60,14 +60,14 @@ public class SearchActivity extends ActionBarActivity {
     }
 
     public void locationRadioHit(View view){
-        locationRadio.setChecked(true);
+        //locationRadio.setChecked(true);
         tagRadio.setChecked(false);
         nameRadio.setChecked(false);
     }
 
     public void tagRadioHit(View view){
         Log.d("Button hit","tag radio");
-        locationRadio.setChecked(false);
+        //locationRadio.setChecked(false);
         tagRadio.setChecked(true);
         nameRadio.setChecked(false);
 
@@ -75,7 +75,7 @@ public class SearchActivity extends ActionBarActivity {
 
     public void nameRadioHit(View view){
         Log.d("Button hit","name radio");
-        locationRadio.setChecked(false);
+        //locationRadio.setChecked(false);
         tagRadio.setChecked(false);
         nameRadio.setChecked(true);
     }
