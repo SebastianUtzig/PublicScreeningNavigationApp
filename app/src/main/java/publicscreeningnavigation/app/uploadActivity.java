@@ -97,7 +97,7 @@ public class uploadActivity extends FragmentActivity implements addTagDialogFrag
     public void startUpload(View view){
         String nameString = name.getText().toString();
         String descriptionString = description.getText().toString();
-        if (nameString.equals("Location Name")){
+        if (nameString.equals("")){
             Context context = getApplicationContext();
             CharSequence text = "Please give a name to your location!";
             int duration = Toast.LENGTH_SHORT;
@@ -106,7 +106,7 @@ public class uploadActivity extends FragmentActivity implements addTagDialogFrag
             toast.show();
             return;
         }
-        if (descriptionString == "Description"){
+        if (descriptionString == ""){
             descriptionString = "No description available!";
         }
 

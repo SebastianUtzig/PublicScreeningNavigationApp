@@ -59,6 +59,7 @@ public class locationActivity extends ActionBarActivity {
             @Override
             public void onMapClick(LatLng latLng) {
                 Intent i = new Intent(getApplicationContext(), MapActivity.class);
+                i.putExtra("centerId",hostedLocation.getID());
                 startActivityForResult(i, 0);
             }
         });
