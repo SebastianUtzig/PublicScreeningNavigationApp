@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,6 +30,12 @@ public class locationActivity extends ActionBarActivity {
     private TextView tagContent;
     private GoogleMap map;
     private GPSTracker tracker;
+
+    private void changeIntent(){
+        Intent i = new Intent(getApplicationContext(), MapActivity.class);
+        i.putExtra("centerId",hostedLocation.getID());
+        startActivityForResult(i, 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +68,28 @@ public class locationActivity extends ActionBarActivity {
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getApplicationContext(), MapActivity.class);
-                i.putExtra("centerId",hostedLocation.getID());
-                startActivityForResult(i, 0);
+                changeIntent();
             }
         });
 
-        Marker weimar_reservebank = map.addMarker(new MarkerOptions()
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                changeIntent();
+                return true;
+            }
+        });
+
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                changeIntent();
+            }
+        });
+
+
+
+        Marker marker = map.addMarker(new MarkerOptions()
                 .position(hostedLocation.getPosition())
                 .title(hostedLocation.getName())
                 .snippet(hostedLocation.tagsToStr())
@@ -75,15 +97,29 @@ public class locationActivity extends ActionBarActivity {
                         .fromResource(R.drawable.ic_launcher)));
 
         // Move the camera instantly to hamburg with a zoom of 15.
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(hostedLocation.getPosition(), 15));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(hostedLocation.getPosition(), 13));
 
         // Zoom in, animating the camera.
-        map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+        //map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
 
 
         //load images here:
         // getimages
         new GetImages((ImageView) findViewById(R.id.imageView),hostedLocation.getID()).execute();
+
+
+        map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback(){
+            @Override
+            public void onMapLoaded() {
+                map.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
+                    @Override
+                    public void onCameraChange(CameraPosition cameraPosition) {
+                        changeIntent();
+                    }
+                });
+            }
+
+        });
 
     }
 

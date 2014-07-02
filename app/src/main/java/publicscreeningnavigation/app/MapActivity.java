@@ -52,28 +52,9 @@ public class MapActivity extends FragmentActivity  {
 
         map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
-        /*Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
-                .title("Hamburg"));*/
-        /*Marker kiel = map.addMarker(new MarkerOptions()
-                .position(KIEL)
-                .title("Kiel")
-                .snippet("Kiel is cool")
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.ic_launcher)));*/
-        Marker weimar = map.addMarker(new MarkerOptions().position(WEIMAR)
-                .title("Weimar"));
-        /*Marker weimar_hall = map.addMarker(new MarkerOptions()
-                .position(WEIMAR_HALL)
-                .title("Weimar Hall")
-                .snippet("indoor, no smoking")
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.ic_launcher)));
-        Marker weimar_reservebank = map.addMarker(new MarkerOptions()
-                .position(WEIMAR_RESERVEBANK)
-                .title("Reservebank")
-                .snippet("indoor, sports bar")
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.ic_launcher)));*/
+
+        /*Marker weimar = map.addMarker(new MarkerOptions().position(WEIMAR)
+                .title("Weimar"));*/
 
         for (screeningLocation l : locationStore.sharedLocations()) {
             String tagString = "";
@@ -115,6 +96,24 @@ public class MapActivity extends FragmentActivity  {
             }
         });
 
+
+        tracker = new GPSTracker(MapActivity.this);
+        double lat, lon;
+        LatLng own_location = null;
+        if (tracker.canGetLocation()) {
+            Location current = tracker.getLocation();
+            lat = current.getLatitude();
+            lon = current.getLongitude();
+
+            own_location = new LatLng(lat,lon);
+            Marker meMarker = map.addMarker(new MarkerOptions().position(own_location)
+                    .title("Your Position"));
+
+        }
+        else{
+            tracker.showSettingsAlert();
+        }
+
         if(centerId>=0) {
 
             screeningLocation location = filter.getInstance().filterForId(centerId);
@@ -129,29 +128,18 @@ public class MapActivity extends FragmentActivity  {
                 vip_marker.showInfoWindow();
             }
         }
-        else{
-            // Move the camera instantly to hamburg with a zoom of 15.
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(WEIMAR, 15));
+        else {
 
-            // Zoom in, animating the camera.
-            map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+            if (own_location != null){
+                // Move the camera instantly to hamburg with a zoom of 15.
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(own_location, 13));
+
+                // Zoom in, animating the camera.
+                map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+            }
         }
 
-        tracker = new GPSTracker(MapActivity.this);
-        double lat, lon;
-        if (tracker.canGetLocation()) {
-            Location current = tracker.getLocation();
-            lat = current.getLatitude();
-            lon = current.getLongitude();
 
-            LatLng me = new LatLng(lat,lon);
-            Marker meMarker = map.addMarker(new MarkerOptions().position(me)
-                    .title("Your Position"));
-
-        }
-        else{
-            tracker.showSettingsAlert();
-        }
 
 
 
