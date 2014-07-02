@@ -1,6 +1,8 @@
 package publicscreeningnavigation.app;
 
 import android.content.Intent;
+import android.location.Location;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ public class locationActivity extends ActionBarActivity {
     private TextView descriptionContent;
     private TextView tagContent;
     private GoogleMap map;
+    private GPSTracker tracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,32 @@ public class locationActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    public void navigate(View view){
+
+        double hosted_lat = hostedLocation.getPosition().latitude;
+        double hosted_long = hostedLocation.getPosition().longitude;
+
+        tracker = new GPSTracker(locationActivity.this);
+        double lat, lon;
+        if (tracker.canGetLocation()) {
+            Location current = tracker.getLocation();
+            lat = current.getLatitude();
+            lon = current.getLongitude();
+
+
+            Intent intent = new Intent( Intent.ACTION_VIEW,
+                    Uri.parse("http://ditu.google.cn/maps?f=d&source=s_d" +
+                            "&saddr="+lat+", "+lon+"&daddr="+hosted_lat+", "+hosted_long+"&hl=zh&t=m&dirflg=w"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK&Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+            startActivity(intent);
+
+        }else{
+            tracker.showSettingsAlert();
+        }
 
     }
 
