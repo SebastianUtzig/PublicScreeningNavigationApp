@@ -50,7 +50,7 @@ public class resultActivity extends ActionBarActivity {
 
         ArrayList<String> names = getNamesFromResults();
         Log.d("Size of the names", String.valueOf(names.size()));
-        final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, names);
+        final StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.styled_list_element, names);
         listview.setAdapter(adapter);
 
 

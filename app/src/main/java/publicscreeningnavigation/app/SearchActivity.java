@@ -32,9 +32,10 @@ public class SearchActivity extends ActionBarActivity {
 
         nameRadio = (RadioButton)findViewById(R.id.nameRadio);
         tagRadio = (RadioButton)findViewById(R.id.tagRadio);
-        locationRadio = (RadioButton)findViewById(R.id.locationRadio);
+        //locationRadio = (RadioButton)findViewById(R.id.locationRadio);
         searchView = (TextView)findViewById(R.id.editText);
-        locationRadio.setChecked(true);
+        //locationRadio.setChecked(true);
+        nameRadio.setChecked(true);
     }
 
 
@@ -88,10 +89,10 @@ public class SearchActivity extends ActionBarActivity {
 
         if (searchString.length() > 0){
 
-            if (locationRadio.isChecked()){
+            /*if (locationRadio.isChecked()){
                forLocation = true;
-            }
-            else if (tagRadio.isChecked()){
+            }*/
+            if (tagRadio.isChecked()){
                 forTag = true;
             }
             else {

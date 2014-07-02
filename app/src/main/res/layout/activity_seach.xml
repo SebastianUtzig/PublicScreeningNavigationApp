@@ -6,27 +6,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="publicscreeningnavigation.app.SeachActivity"
+    tools:context="publicscreeningnavigation.app.SearchActivity"
     android:background="#133965">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search by location"
-        android:id="@+id/locationRadio"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="false"
-        android:onClick="locationRadioHit"
-        android:textColor="#ffffff"/>
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search by tag"
         android:id="@+id/tagRadio"
-        android:layout_below="@+id/locationRadio"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:checked="false"
@@ -36,7 +24,7 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seach by name"
+        android:text="Search by name"
         android:id="@+id/nameRadio"
         android:layout_below="@+id/tagRadio"
         android:layout_alignParentLeft="true"
