@@ -1,5 +1,7 @@
 package publicscreeningnavigation.app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Debug;
@@ -23,42 +25,46 @@ import java.util.ArrayList;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
-public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
+public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
 
+    private Activity activity;
     private String image_title;
     int location_id;
 
     InputStream inputStream;
 
-    public UploadImage(String image_title,int location_id){
+    public UploadImage(Activity activity,String image_title,int location_id){
+        this.activity = activity;
         this.image_title = image_title;
         this.location_id = location_id;
     }
 
     @Override
-    protected String doInBackground(Bitmap... params) {
+    protected Integer doInBackground(Bitmap... params) {
         //postData(params[0]);
         System.out.println(params[0]);
         //System.out.println(params[1]);
         //postData(params[0],params[1]);
         upload(params[0]);
-        return "WTF";
+        return 0;
     }
 
     protected void onProgressUpdate(Integer... progress) {
         //setProgressPercent(progress[0]);
     }
 
-    protected void onPostExecute(Long result) {
+    protected void onPostExecute(Integer return_value) {
         //showDialog("Downloaded " + result + " bytes");
+        Intent i = new Intent(this.activity, locationActivity.class);
+        i.putExtra("clickedId",this.location_id);
+        this.activity.startActivity(i);
+        this.activity.finish();
     }
     public void upload(Bitmap bitmap){
 
         //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        Log.d("What","thefuck");
         bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream); //compress to which format you want.//!!!!!!!!!!!
-        Log.d("What","fuckfuckfuck");
 
         byte[] bitmapdata = stream.toByteArray();
 
@@ -73,7 +79,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, String> {
 
         try{
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/recieve_image.php");
+            HttpPost httppost = new HttpPost("http://141.54.53.22/PublicScreeningNavigation/recieve_image.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             String the_string_response = convertResponseToString(response);
