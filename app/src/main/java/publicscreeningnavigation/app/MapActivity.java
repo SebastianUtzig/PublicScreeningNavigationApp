@@ -1,6 +1,7 @@
 package publicscreeningnavigation.app;
 
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
@@ -33,8 +35,9 @@ public class MapActivity extends FragmentActivity  {
     private GoogleMap map;
 
     private Marker vip_marker = null;
-
+    private GPSTracker tracker;
     private HashMap<Marker,Integer> marker_locationId = new HashMap<Marker,Integer>();
+    private HashMap<Integer,Marker> locationId_marker = new HashMap<Integer,Marker>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class MapActivity extends FragmentActivity  {
                             .fromResource(R.drawable.ic_launcher)));
 
             marker_locationId.put(m,l.getID());
+            locationId_marker.put(l.getID(),m);
 
 
             if(centerId>=0 && centerId == l.getID()){
@@ -133,8 +137,25 @@ public class MapActivity extends FragmentActivity  {
             map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
         }
 
+        tracker = new GPSTracker(MapActivity.this);
+        double lat, lon;
+        if (tracker.canGetLocation()) {
+            Location current = tracker.getLocation();
+            lat = current.getLatitude();
+            lon = current.getLongitude();
 
-        //working route with gmaps app
+            LatLng me = new LatLng(lat,lon);
+            Marker meMarker = map.addMarker(new MarkerOptions().position(me)
+                    .title("Your Position"));
+
+        }
+        else{
+            tracker.showSettingsAlert();
+        }
+
+
+
+            //working route with gmaps app
         /*Intent intent = new Intent( Intent.ACTION_VIEW,
                 Uri.parse("http://ditu.google.cn/maps?f=d&source=s_d" +
                         "&saddr=50.9837403, 11.325099000000023&daddr=50.97411899999999, 11.32747919999997&hl=zh&t=m&dirflg=w"));
@@ -166,6 +187,51 @@ public class MapActivity extends FragmentActivity  {
     }
 
     public void nearestLocation(View view){
-        System.out.println("bla");
+
+        double lat, lon;
+        if (tracker.canGetLocation()) {
+            Location current = tracker.getLocation();
+            lat = current.getLatitude();
+            lon = current.getLongitude();
+            //LatLng me = new LatLng(lat,lon);
+
+            double min_dist = 99999999;
+            int min_location_id = -1;
+            LatLng min_latlng = null;
+            for (screeningLocation l : locationStore.sharedLocations()) {
+                double tmp_lat = l.getPosition().latitude;
+                double tmp_lng = l.getPosition().longitude;
+
+                double diffLat = Math.abs(lat - tmp_lat);
+                double diffLng = Math.abs(lon - tmp_lng);
+
+                double distance = diffLat * diffLat + diffLng * diffLng;
+
+                if (distance < min_dist){
+                    min_dist = distance;
+                    min_location_id = l.getID();
+                    min_latlng = l.getPosition();
+                }
+            }
+
+            if(min_location_id >=0){
+                Marker nearest_marker = locationId_marker.get(min_location_id);
+
+                nearest_marker.showInfoWindow();
+
+                // Move the camera instantly to hamburg with a zoom of 15.
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(min_latlng, 13));
+
+                // Zoom in, animating the camera.
+                map.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+
+            }
+
+
+
+        }
+        else{
+            tracker.showSettingsAlert();
+        }
     }
 }

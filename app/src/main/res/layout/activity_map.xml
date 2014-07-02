@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Find nearest location"
         android:id="@+id/finLocationButton"
-        android:alpha="0.8"
+        android:alpha="0.95"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="nearestLocation"/>
