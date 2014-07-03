@@ -66,7 +66,7 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
         HttpClient httpclient = new DefaultHttpClient();
 
         //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/post_data.php");
-        HttpPost httppost = new HttpPost("http://141.54.53.22/PublicScreeningNavigation/post_data.php");
+        HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/post_data.php");
         //HttpPost httppost = new HttpPost("http://127.0.0.1/MIS/location_server/recieve_data.php");
 
         //HttpPost httppost = new HttpPost("http://192.168.1.59:6081/"+la+"/"+lo);

@@ -82,7 +82,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         HttpClient httpclient = new DefaultHttpClient();
 
         //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
-        HttpPost httppost = new HttpPost("http://141.54.53.22/PublicScreeningNavigation/get_data.php");
+        HttpPost httppost = new HttpPost("http://192.168.1.59/PublicScreeningNavigation/get_data.php");
         try {
 
             // Add your data
@@ -110,7 +110,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
 
                     System.out.println(Arrays.deepToString(locations));
 
-                    return "http://141.54.53.22/PublicScreeningNavigation/"+locations[0];
+                    return "http://192.168.1.59/PublicScreeningNavigation/"+locations[0];
                 }
             } else {
                 //Toast.makeText(this, "Unable to complete your request", Toast.LENGTH_LONG).show();
@@ -171,7 +171,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
             BitmapFactory.decodeStream(in, null, options);
 
             // Calculate inSampleSize
-            options.inSampleSize = calculateInSampleSize(options, 100, 100);
+            options.inSampleSize = calculateInSampleSize(options, 400, 400);
 
             in2 = OpenHttpConnection(URL);
 
