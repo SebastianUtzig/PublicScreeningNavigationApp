@@ -64,10 +64,9 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
 
         //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream); //compress to which format you want.//!!!!!!!!!!!
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); //compress to which format you want.//!!!!!!!!!!!
 
         byte[] bitmapdata = stream.toByteArray();
-
 
         byte[] byte_arr = stream.toByteArray();
         String image_str = Base64.encodeToString(byte_arr,Base64.DEFAULT);
@@ -79,7 +78,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
 
         try{
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://141.54.53.22/PublicScreeningNavigation/recieve_image.php");
+            HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/recieve_image.php");
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpclient.execute(httppost);
             String the_string_response = convertResponseToString(response);

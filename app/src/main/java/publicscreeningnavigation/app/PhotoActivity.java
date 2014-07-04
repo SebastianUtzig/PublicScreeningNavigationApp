@@ -3,6 +3,7 @@ package publicscreeningnavigation.app;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,7 +36,38 @@ public class PhotoActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            ///////////////////////////////////////////////
+            //new:
+            // First decode with inJustDecodeBounds=true to check dimensions
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            //BitmapFactory.decodeResource(data, resId, options);
+            BitmapFactory.decodeByteArray(data,0,data.length, options);
+
+            // Calculate inSampleSize
+            options.inSampleSize = calculateInSampleSize(options, 400, 400);
+
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
+            //return BitmapFactory.decodeResource(data, resId, options);
+            //Bitmap bitmap_rot = BitmapFactory.decodeByteArray(data,0,data.length, options);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length, options);
+
+            //vertical pictures
+            /*Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap bitmap = Bitmap.createBitmap(bitmap_rot, 0, 0,
+                    bitmap_rot.getWidth(), bitmap_rot.getHeight(),
+                    matrix, true);*/
+
+
+            //////////////////////////////////////////////
+            
+            //Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            //Bitmap b = BitmapFactory.decodeByteArray(data, 0, data.length);
+            //Bitmap bitmap = Bitmap.createScaledBitmap(b, 300, 300, false);
+
+
             if(bitmap==null){
                 Toast.makeText(getApplicationContext(), "not taken", Toast.LENGTH_SHORT).show();
             }
@@ -48,6 +80,29 @@ public class PhotoActivity extends Activity {
             cameraObject.release();
         }
     };
+
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
