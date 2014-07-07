@@ -1,5 +1,6 @@
 package publicscreeningnavigation.app;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -28,32 +29,30 @@ import java.util.List;
 public class GetData extends AsyncTask<Void, Void, Void> {
 
     private String table_name;
+    private Activity activity;
 
-    public GetData(String name){
+    public GetData(String name,Activity activity){
         this.table_name = name;
+        this.activity = activity;
     }
 
 
     @Override
     protected Void doInBackground(Void... params) {
         getData();
-
         return null;
     }
 
     protected void onProgressUpdate(Integer... progress) {
-        //setProgressPercent(progress[0]);
     }
 
     protected void onPostExecute(Long result) {
-        //showDialog("Downloaded " + result + " bytes");
     }
     private void getData() {
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
         HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/get_data.php");
         try {
 
@@ -62,7 +61,6 @@ public class GetData extends AsyncTask<Void, Void, Void> {
             nameValuePairs.add(new BasicNameValuePair("name", String.valueOf(this.table_name)));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
             if(response != null) {
@@ -70,11 +68,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                 InputStream inputstream = response.getEntity().getContent();
                 line = convertStreamToString(inputstream);
 
-
                 if(line.length()>0) {
-
-                    System.out.println(line);
-                    //Toast.makeText(this, line, Toast.LENGTH_SHORT).show();
 
                     //add locations to store:
                     String[] locations = line.split(";");
@@ -92,32 +86,28 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                         screeningLocation new_location = new screeningLocation(name, id, new LatLng(lat, lon));
                         new_location.setDescription(description);
 
-
                         ///////tags
                         if(location.length>5){
                             for(int tag_index = 5;tag_index<location.length;++tag_index){
                                 new_location.addTag(location[tag_index]);
                             }
                         }
-
+                        // add local copy
                         locationStore.addLocation(new_location);
-
 
                     }
                 }
 
-
             } else {
-                //Toast.makeText(this, "Unable to complete your request", Toast.LENGTH_LONG).show();
+                Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
             }
 
-
         } catch (ClientProtocolException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
 
         }
         catch (IOException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -131,7 +121,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                 total.append(line);
             }
         } catch (Exception e) {
-            //Toast.makeText(this, "Stream Exception", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.activity, "Stream Exception", Toast.LENGTH_SHORT).show();
         }
         return total.toString();
     }

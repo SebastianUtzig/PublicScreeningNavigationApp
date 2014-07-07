@@ -44,8 +44,6 @@ public class resultActivity extends ActionBarActivity {
 
         if (forName){
             filterForNames();
-        } else if (forLocation){
-            filterForLocation();
         } else {
             filterForTag();
         }
@@ -73,12 +71,6 @@ public class resultActivity extends ActionBarActivity {
 
     private void filterForNames() {
         filteredResults = filter.getInstance().filterLocationsForName(searchWord);
-    }
-
-    private void filterForLocation() {
-        Toast.makeText(getApplicationContext(),
-                "Filtering for location is not yet implemented. Displaying all locations.", Toast.LENGTH_LONG).show();
-        copyLocations();
     }
 
     private void filterForTag() {

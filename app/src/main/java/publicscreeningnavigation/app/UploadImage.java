@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Debug;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -41,20 +42,13 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
 
     @Override
     protected Integer doInBackground(Bitmap... params) {
-        //postData(params[0]);
-        System.out.println(params[0]);
-        //System.out.println(params[1]);
-        //postData(params[0],params[1]);
         upload(params[0]);
         return 0;
     }
 
-    protected void onProgressUpdate(Integer... progress) {
-        //setProgressPercent(progress[0]);
-    }
+    protected void onProgressUpdate(Integer... progress) {}
 
     protected void onPostExecute(Integer return_value) {
-        //showDialog("Downloaded " + result + " bytes");
         Intent i = new Intent(this.activity, locationActivity.class);
         i.putExtra("clickedId",this.location_id);
         this.activity.startActivity(i);
@@ -62,9 +56,8 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
     }
     public void upload(Bitmap bitmap){
 
-        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream); //compress to which format you want.//!!!!!!!!!!!
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 
         byte[] bitmapdata = stream.toByteArray();
 
@@ -83,11 +76,8 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
             HttpResponse response = httpclient.execute(httppost);
             String the_string_response = convertResponseToString(response);
 
-            System.out.println("uploaded photo!!!!!!!!!!!"+the_string_response);
-            //Toast.makeText(UploadImage.this, "Response " + the_string_response, Toast.LENGTH_LONG).show();
         }catch(Exception e){
-            //Toast.makeText(UploadImage.this, "ERROR " + e.getMessage(), Toast.LENGTH_LONG).show();
-            System.out.println("Error in http connection "+e.toString());
+            Toast.makeText(this.activity.getApplicationContext(), "Image upload failed!", Toast.LENGTH_LONG).show();
         }
 
     }

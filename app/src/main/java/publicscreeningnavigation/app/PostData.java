@@ -41,19 +41,14 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
         this.description = description;
     }
 
-
     @Override
     protected Integer doInBackground(Void... params) {
-
-        return postData();
+       return postData();
     }
 
-    protected void onProgressUpdate(Void... progress) {
-        //setProgressPercent(progress[0]);
-    }
+    protected void onProgressUpdate(Void... progress) {}
 
     protected void onPostExecute(Integer result) {
-        //showDialog("Downloaded " + result + " bytes");
         Intent i = new Intent(activity, PhotoActivity.class);
         i.putExtra("location_id",result);
         this.activity.startActivity(i);
@@ -65,14 +60,7 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/post_data.php");
         HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/post_data.php");
-        //HttpPost httppost = new HttpPost("http://127.0.0.1/MIS/location_server/recieve_data.php");
-
-        //HttpPost httppost = new HttpPost("http://192.168.1.59:6081/"+la+"/"+lo);
-
-        //System.out.println("posted data!!!!!!!!!!!!!"+la+" "+lo);
-        //serverIpText.setText("posted data!!!!!!!!!!!!!"+la+" "+lo);
 
         try {
 
@@ -93,14 +81,10 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-
             // Execute HTTP Post Request
-            //HttpResponse response = httpclient.execute(htget);
             HttpResponse response = httpclient.execute(httppost);
-            //String resp = response.getStatusLine().toStrinkatyg(); try this now
-            //Toast.makeText(this, resp, 5000).show();
 
-            //also add it to local locationStore this time
+            //also add it to local locationStore
             String line = "";
             InputStream inputstream = response.getEntity().getContent();
             line = convertStreamToString(inputstream);
@@ -112,17 +96,14 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
             }
             locationStore.addLocation(new_location);
 
-
             return insert_index;
 
-
-
         } catch (ClientProtocolException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location!", Toast.LENGTH_LONG).show();
 
         }
         catch (IOException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location!", Toast.LENGTH_LONG).show();
         }
 
         return  -1;
@@ -137,7 +118,7 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
                 total.append(line);
             }
         } catch (Exception e) {
-            //Toast.makeText(this, "Stream Exception", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location: Stream Exception", Toast.LENGTH_SHORT).show();
         }
         return total.toString();
     }

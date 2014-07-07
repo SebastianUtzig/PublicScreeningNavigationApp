@@ -41,8 +41,6 @@ public class screeningLocation {
         }
     }
 
-    //returns true if no tag in tags array was there yet
-    //returns false if there were tags that were not added
     public void addTags(ArrayList<String> tags){
         for (String tag : tags){
             this.tags.add(tag);

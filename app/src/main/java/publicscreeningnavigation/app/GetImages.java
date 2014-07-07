@@ -48,7 +48,6 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
     }
 
     protected void onProgressUpdate(Integer... progress) {
-        //setProgressPercent(progress[0]);
     }
 
     protected void onPostExecute(Integer result) {
@@ -66,14 +65,10 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         String path = getImagePath();
 
         if(path != null) {
-           /* this.bitmap = DownloadImage(
-                    "http://192.168.1.59/PublicScreeningNavigation/img/new_photo.jpg");*/
-           System.out.println(path);
-
            this.bitmap = DownloadImage(path);
         }
         else{
-            System.out.println("There is no image for this location!!!!");
+            System.out.println("There is no image for this location!");
         }
     }
 
@@ -81,7 +76,6 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        //HttpPost httppost = new HttpPost("http://192.168.1.59/MIS/project/get_data.php");
         HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/get_data.php");
         try {
 
@@ -90,7 +84,6 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
             nameValuePairs.add(new BasicNameValuePair("name", "images"));
             nameValuePairs.add(new BasicNameValuePair("location_id", String.valueOf(this.location_id)));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
@@ -101,10 +94,6 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
 
                 if(line.length()>0) {
 
-
-                    System.out.println(line);
-                    //Toast.makeText(this, line, Toast.LENGTH_SHORT).show();
-
                     //add locations to store:
                     String[] locations = line.split(";");
 
@@ -113,18 +102,17 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
                     return "http://141.54.50.201/PublicScreeningNavigation/"+locations[0];
                 }
             } else {
-                //Toast.makeText(this, "Unable to complete your request", Toast.LENGTH_LONG).show();
+                System.out.println("No response from server while getting image path!");
             }
         } catch (ClientProtocolException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            System.out.println("No response from server while getting image path!");
         }
         catch (IOException e) {
-            //Toast.makeText(this, "Error", 5000).show();
+            System.out.println("No response from server while getting image path!");
         }
-        //String path = "http://192.168.1.59/PublicScreeningNavigation/";
+
         return null;
     }
-
 
     private InputStream OpenHttpConnection(String urlString)
             throws IOException
@@ -165,7 +153,6 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         try {
             in = OpenHttpConnection(URL);
 
-            //new:
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(in, null, options);
@@ -179,11 +166,8 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
             options.inJustDecodeBounds = false;
             bitmap = BitmapFactory.decodeStream(in2, null, options);
 
-
-            //bitmap = BitmapFactory.decodeStream(in);
             in.close();
         } catch (IOException e1) {
-            //TODO Auto-generated catch block
             e1.printStackTrace();
         }
         return bitmap;
@@ -213,7 +197,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         return inSampleSize;
     }
 
-    //////////////////////////////////////////////////////////post response
+   //post response
     private String convertStreamToString(InputStream is) {
         String line = "";
         StringBuilder total = new StringBuilder();
@@ -223,7 +207,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
                 total.append(line);
             }
         } catch (Exception e) {
-            //Toast.makeText(this, "Stream Exception", Toast.LENGTH_SHORT).show();
+            System.out.println("Stream Exception while getting image path!!");
         }
         return total.toString();
     }

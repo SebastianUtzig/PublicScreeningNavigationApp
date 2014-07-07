@@ -36,8 +36,6 @@ public class PhotoActivity extends Activity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-            ///////////////////////////////////////////////
-            //new:
             // First decode with inJustDecodeBounds=true to check dimensions
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
@@ -49,8 +47,6 @@ public class PhotoActivity extends Activity {
 
             // Decode bitmap with inSampleSize set
             options.inJustDecodeBounds = false;
-            //return BitmapFactory.decodeResource(data, resId, options);
-            //Bitmap bitmap_rot = BitmapFactory.decodeByteArray(data,0,data.length, options);
             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length, options);
 
             //vertical pictures
@@ -60,21 +56,12 @@ public class PhotoActivity extends Activity {
                     bitmap_rot.getWidth(), bitmap_rot.getHeight(),
                     matrix, true);*/
 
-
-            //////////////////////////////////////////////
-            
-            //Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-            //Bitmap b = BitmapFactory.decodeByteArray(data, 0, data.length);
-            //Bitmap bitmap = Bitmap.createScaledBitmap(b, 300, 300, false);
-
-
             if(bitmap==null){
-                Toast.makeText(getApplicationContext(), "not taken", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Image decoding failed!", Toast.LENGTH_SHORT).show();
             }
             else
             {
-                Toast.makeText(getApplicationContext(), "taken", Toast.LENGTH_SHORT).show();
-                System.out.println(bitmap);
+                Toast.makeText(getApplicationContext(), "Photo successfully taken!", Toast.LENGTH_SHORT).show();
                 new UploadImage(activity,"photo_of_"+location_id,location_id).execute(bitmap);
             }
             cameraObject.release();
@@ -100,7 +87,6 @@ public class PhotoActivity extends Activity {
                 inSampleSize *= 2;
             }
         }
-
         return inSampleSize;
     }
 
@@ -116,8 +102,6 @@ public class PhotoActivity extends Activity {
             this.location_id = extras.getInt("location_id");
         }
 
-
-        //pic = (ImageView)findViewById(R.id.imageView1);
         cameraObject = isCameraAvailiable();
         showCamera = new Preview(this, cameraObject);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
@@ -128,6 +112,7 @@ public class PhotoActivity extends Activity {
         preview.getLayoutParams().width=params.getPreviewSize().height;
         preview.getLayoutParams().height=params.getPreviewSize().width;
     }
+
     public void snapIt(View view){
         cameraObject.takePicture(null, null, capturedIt);
     }

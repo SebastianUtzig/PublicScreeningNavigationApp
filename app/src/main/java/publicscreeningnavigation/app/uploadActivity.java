@@ -136,12 +136,6 @@ public class uploadActivity extends FragmentActivity implements addTagDialogFrag
          new PostData(this,lat,lon,nameString,descriptionString,tags).execute();
          int id = filter.getInstance().findHighestActiveId()+1;
 
-         // is already done by post data!!!!!:
-         //screeningLocation location = new screeningLocation(nameString, id, new LatLng(lat, lon));
-         //location.addTags(tags);
-         //location.setDescription(descriptionString);
-
-         //locationStore.addLocation(location);
         }
         else {
             tracker.showSettingsAlert();

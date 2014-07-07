@@ -35,10 +35,10 @@ public class locationStore {
     }
 
     private locationStore() {
-        //locations = createScreeningSet();
         locations = new ArrayList<screeningLocation>();
     }
 
+    // init offline set of locations - is not used yet
     private static ArrayList<screeningLocation> createScreeningSet() {
 
         screeningLocation reserveBank = new screeningLocation("Reservebank",1,new LatLng(50.974296,11.327415));

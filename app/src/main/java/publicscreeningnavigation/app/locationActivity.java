@@ -56,15 +56,14 @@ public class locationActivity extends ActionBarActivity {
 
         descriptionContent.setText(hostedLocation.getDescription());
         tagContent.setText(hostedLocation.tagsToStr());
-        /*headerName = (TextView)findViewById(R.id.textView);
-        headerName.setText(hostedLocation.getName());*/
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle(hostedLocation.getName());
-
 
         map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
+        //interaction events with map preview lead to MapActivity
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -88,7 +87,6 @@ public class locationActivity extends ActionBarActivity {
         });
 
 
-
         Marker marker = map.addMarker(new MarkerOptions()
                 .position(hostedLocation.getPosition())
                 .title(hostedLocation.getName())
@@ -96,18 +94,13 @@ public class locationActivity extends ActionBarActivity {
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.ic_launcher)));
 
-        // Move the camera instantly to hamburg with a zoom of 15.
+        // Move the camera instantly to shown location
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(hostedLocation.getPosition(), 13));
 
-        // Zoom in, animating the camera.
-        //map.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
-
-
-        //load images here:
-        // getimages
+        // start image loading asynchronously here
         new GetImages((ImageView) findViewById(R.id.imageView),hostedLocation.getID()).execute();
 
-
+        //interaction events with map preview lead to MapActivity
         map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback(){
             @Override
             public void onMapLoaded() {
@@ -120,7 +113,6 @@ public class locationActivity extends ActionBarActivity {
             }
 
         });
-
     }
 
 
@@ -156,7 +148,7 @@ public class locationActivity extends ActionBarActivity {
             lat = current.getLatitude();
             lon = current.getLongitude();
 
-
+            // routing with google maps app
             Intent intent = new Intent( Intent.ACTION_VIEW,
                     Uri.parse("http://ditu.google.cn/maps?f=d&source=s_d" +
                             "&saddr="+lat+", "+lon+"&daddr="+hosted_lat+", "+hosted_long+"&hl=zh&t=m&dirflg=w"));
