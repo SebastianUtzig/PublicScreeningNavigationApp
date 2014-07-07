@@ -2,6 +2,7 @@ package publicscreeningnavigation.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,4 +57,9 @@ public class MainActivity extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext(), uploadActivity.class);
         startActivityForResult(i,0);
     }
+
+    public void optionsPopup(View view){
+
+    }
+
 }

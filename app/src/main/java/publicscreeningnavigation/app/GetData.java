@@ -52,7 +52,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/get_data.php");
+        HttpPost httppost = new HttpPost("http://"+locationStore.getServerAddress()+"/PublicScreeningNavigation/get_data.php");
         try {
 
             // Add your data
@@ -72,11 +72,8 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                     //add locations to store:
                     String[] locations = line.split(";");
 
-                    System.out.println(Arrays.deepToString(locations));
-
                     for (String s : locations) {
                         String[] location = s.split("%");
-                        System.out.println(Arrays.deepToString(location));
                         String name = location[3];
                         int id = Integer.parseInt(location[0]);
                         double lat = Double.parseDouble(location[1]);

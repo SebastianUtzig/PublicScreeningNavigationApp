@@ -13,11 +13,25 @@ public class locationStore {
     private static locationStore instance = null;
     private static ArrayList<screeningLocation> locations = null;
 
+    private static String server_ip ="192.168.1.59";
+
     public static locationStore getInstance() {
         if (instance == null){
             instance = new locationStore();
         }
         return instance;
+    }
+
+    public static String getServerAddress(){
+        if (instance == null){
+            instance = new locationStore();
+        }
+        return server_ip;}
+    public static void setServerAddress(String ip){
+        if (instance == null){
+            instance = new locationStore();
+        }
+        server_ip=ip;
     }
 
     public static ArrayList<screeningLocation> sharedLocations(){

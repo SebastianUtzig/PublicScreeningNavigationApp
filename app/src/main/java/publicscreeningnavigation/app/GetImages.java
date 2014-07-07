@@ -76,7 +76,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/get_data.php");
+        HttpPost httppost = new HttpPost("http://"+locationStore.getServerAddress()+"/PublicScreeningNavigation/get_data.php");
         try {
 
             // Add your data
@@ -99,7 +99,7 @@ public class GetImages extends AsyncTask<Void, Void, Integer> {
 
                     System.out.println(Arrays.deepToString(locations));
 
-                    return "http://141.54.50.201/PublicScreeningNavigation/"+locations[0];
+                    return "http://"+locationStore.getServerAddress()+"/PublicScreeningNavigation/"+locations[0];
                 }
             } else {
                 System.out.println("No response from server while getting image path!");

@@ -40,4 +40,15 @@
         android:onClick="openUploadView"
         android:textColor="#ffffff"/>
 
+    <Button
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/options"
+        android:onClick="optionsPopup"
+        android:alpha="0.5" />
+
 </RelativeLayout>

@@ -60,7 +60,7 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
 
-        HttpPost httppost = new HttpPost("http://141.54.50.201/PublicScreeningNavigation/post_data.php");
+        HttpPost httppost = new HttpPost("http://"+locationStore.getServerAddress()+"/PublicScreeningNavigation/post_data.php");
 
         try {
 
