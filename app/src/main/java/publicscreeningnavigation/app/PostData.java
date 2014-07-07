@@ -99,11 +99,11 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
             return insert_index;
 
         } catch (ClientProtocolException e) {
-            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location!", Toast.LENGTH_LONG).show();
+            System.out.println("Unable to post new location!");
 
         }
         catch (IOException e) {
-            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location!", Toast.LENGTH_LONG).show();
+            System.out.println("Unable to post new location!");
         }
 
         return  -1;
@@ -118,7 +118,7 @@ public class PostData extends AsyncTask<Void, Void, Integer> {
                 total.append(line);
             }
         } catch (Exception e) {
-            Toast.makeText(this.activity.getApplicationContext(), "Unable to post new location: Stream Exception", Toast.LENGTH_SHORT).show();
+            System.out.println("Unable to post new location: Stream Exception");
         }
         return total.toString();
     }

@@ -19,7 +19,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
         setContentView(R.layout.activity_main);
-        new GetData("locations",this).execute();
+        new GetData("locations").execute();
     }
 
 

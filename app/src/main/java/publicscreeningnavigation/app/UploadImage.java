@@ -77,7 +77,7 @@ public class UploadImage extends AsyncTask<Bitmap, Bitmap, Integer> {
             String the_string_response = convertResponseToString(response);
 
         }catch(Exception e){
-            Toast.makeText(this.activity.getApplicationContext(), "Image upload failed!", Toast.LENGTH_LONG).show();
+            System.out.println("Image upload failed!");
         }
 
     }

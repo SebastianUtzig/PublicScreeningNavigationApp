@@ -2,6 +2,7 @@ package publicscreeningnavigation.app;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -29,11 +30,9 @@ import java.util.List;
 public class GetData extends AsyncTask<Void, Void, Void> {
 
     private String table_name;
-    private Activity activity;
 
-    public GetData(String name,Activity activity){
+    public GetData(String name){
         this.table_name = name;
-        this.activity = activity;
     }
 
 
@@ -99,15 +98,15 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                 }
 
             } else {
-                Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
+                System.out.println("Unable to get data from server!");
             }
 
         } catch (ClientProtocolException e) {
-            Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
+            System.out.println("Unable to get data from server!");
 
         }
         catch (IOException e) {
-            Toast.makeText(this.activity.getApplicationContext(), "Unable to get data from server!", Toast.LENGTH_LONG).show();
+            System.out.println("Unable to get data from server!");
         }
 
     }
@@ -121,7 +120,7 @@ public class GetData extends AsyncTask<Void, Void, Void> {
                 total.append(line);
             }
         } catch (Exception e) {
-            Toast.makeText(this.activity, "Stream Exception", Toast.LENGTH_SHORT).show();
+            System.out.println("Stream Exception while getting data from server!");
         }
         return total.toString();
     }
