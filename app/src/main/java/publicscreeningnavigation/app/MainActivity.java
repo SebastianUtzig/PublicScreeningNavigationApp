@@ -1,19 +1,17 @@
 package publicscreeningnavigation.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends FragmentActivity implements changeIPDialogFragment.changeIPListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +57,25 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void optionsPopup(View view){
+        DialogFragment newFragment = new changeIPDialogFragment();
+        String tag = "tagPopUp";
+        newFragment.show(getSupportFragmentManager(),tag);
+    }
 
+    public void onDialogPositiveClick(DialogFragment dialog){
+        changeIPDialogFragment frag = (changeIPDialogFragment) dialog;
+        String ip = frag.getCurrentInputText();
+        locationStore.getInstance().setServerAddress(ip);
+    }
+
+    public void onDialogNegativeClick(DialogFragment dialog){
+        Context context = getApplicationContext();
+        CharSequence text = "IP Change cancelled";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        return;
     }
 
 }
