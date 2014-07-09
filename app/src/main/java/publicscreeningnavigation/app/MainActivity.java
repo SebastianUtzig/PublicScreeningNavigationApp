@@ -59,13 +59,26 @@ public class MainActivity extends FragmentActivity implements changeIPDialogFrag
     public void optionsPopup(View view){
         DialogFragment newFragment = new changeIPDialogFragment();
         String tag = "tagPopUp";
-        newFragment.show(getSupportFragmentManager(),tag);
+        newFragment.show(getSupportFragmentManager(), tag);
     }
 
     public void onDialogPositiveClick(DialogFragment dialog){
+
         changeIPDialogFragment frag = (changeIPDialogFragment) dialog;
         String ip = frag.getCurrentInputText();
-        locationStore.getInstance().setServerAddress(ip);
+
+        boolean invalid = ip.matches(".*[qwertzuiopüasdfghjklöäyxcvbnmQWERTZUIOPÜASDFGHJKLÖÄYXCVBNM,;-_].*");
+
+        if(!invalid) {
+
+            locationStore.getInstance().setServerAddress(ip);
+            Toast toast = Toast.makeText(getApplicationContext(), "Server IP changed to " + ip, Toast.LENGTH_LONG);
+            toast.show();
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter a valid IP Address!", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void onDialogNegativeClick(DialogFragment dialog){

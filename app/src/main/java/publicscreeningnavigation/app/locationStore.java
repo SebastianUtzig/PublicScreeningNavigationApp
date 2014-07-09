@@ -31,7 +31,9 @@ public class locationStore {
         if (instance == null){
             instance = new locationStore();
         }
+        locations.clear();
         server_ip=ip;
+        new GetData("locations").execute();
     }
 
     public static ArrayList<screeningLocation> sharedLocations(){
