@@ -18,9 +18,6 @@
 
 		    	$query2 = "SELECT * FROM tags WHERE location_id = '$location_id'";
 
-		    	//echo $location_id.".........................";
-		    	//echo "rows: ".mysql_num_rows($query2);
-
 		    	$resultset2 = mysql_query($query2);
 		    	while($row2 = mysql_fetch_array($resultset2)){
 		    		echo "%".$row2['name'];
